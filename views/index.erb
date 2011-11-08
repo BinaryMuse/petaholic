@@ -8,14 +8,15 @@
   <script type="text/javascript">
     function getPets(realm, name) {
       var url = "http://us.battle.net/api/wow/character/" + realm + "/" + name + "?fields=companions&jsonp=?";
-      $.getJSON(url, function(data) {
+      var jqXhr = $.getJSON(url);
+      $("#add_char").find("input").removeAttr('disabled').focus();
+
+      jqXhr.success(function(data) {
         var el = $("<div>").html(name).addClass("character");
         $("#characters").append(el);
         for(companion in data.companions) {
           var id = data.companions[companion];
           $("#" + id).addClass("active");
-
-          $("#add_char").find("input").removeAttr('disabled').focus();
         }
       });
     }

@@ -9,12 +9,12 @@ get '/' do
   redirect '/nazjatar'
 end
 
+get '/pets' do
+  pets.inspect
+end
+
 get '/:realm' do |realm|
   @pets = pets
   @realm = realm
   erb :index
-end
-
-get '/pets' do
-  pets.inspect
 end

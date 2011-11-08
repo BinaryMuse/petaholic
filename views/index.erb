@@ -1,0 +1,66 @@
+<html>
+<head>
+  <title>Petaholic!</title>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+  <script type="text/javascript" src="http://static.wowhead.com/widgets/power.js"></script>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+
+  <script type="text/javascript">
+    function getPets(realm, name) {
+      var url = "http://us.battle.net/api/wow/character/" + realm + "/" + name + "?fields=companions&jsonp=?";
+      $.getJSON(url, function(data) {
+        var el = $("<div>").html(name).addClass("character");
+        $("#characters").append(el);
+        for(companion in data.companions) {
+          var id = data.companions[companion];
+          $("#" + id).addClass("active");
+
+          $("#add_char").find("input").removeAttr('disabled').focus();
+        }
+      });
+    }
+
+    $(function() {
+      $("#add").click(function() {
+        var realm = prompt("Realm?");
+        var name  = prompt("Character?");
+
+        getPets(realm, name);
+      });
+
+      $("#add_char").submit(function(evt) {
+        var realm = "<%= @realm %>";
+        var name = $(this).find('input').val();
+
+        $(this).find('input').val('').attr('disabled', true);
+        getPets(realm, name);
+
+        evt.preventDefault();
+        return false;
+      });
+    });
+  </script>
+</head>
+<body>
+
+<div id="info">
+  <p>Pets will be account-bound in 5.0! See your entire collection across all characters.</p>
+</div>
+
+<div id="characters">
+  <h1>Characters</h1>
+  <p>Add your characters here:</p>
+  <form id="add_char">
+    <input type="text" />
+  </form>
+</div>
+
+<div id="pets">
+  <h1>Pets</h1>
+  <% @pets.each do |pet| %>
+    <div id="<%= pet[0] %>" class="pet"><a href="http://www.wowhead.com/spell=<%= pet[0] %>"><%= pet[1] %></a></div>
+  <% end %>
+</div>
+
+</body>
+</html>

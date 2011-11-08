@@ -1,0 +1,65 @@
+body {
+  background-color: #000;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  padding: none;
+  margin: none;
+}
+
+a {
+  color: blue;
+}
+
+a:hover {
+  color: yellow;
+}
+
+input[type=text] {
+  width: 230px;
+  font-size: 16pt;
+}
+
+#info {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  /*text-align: right;*/
+  width: 350px;
+}
+
+#characters {
+  width: 250px;
+  float: left;
+  position: absolute;
+  top: 10px;
+}
+
+#characters .character {
+  font-size: 16pt;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+#pets {
+  margin-left: 260px;
+  position: absolute;
+  top: 10px;
+}
+
+#pets .pet {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: #333;
+  color: blue;
+  opacity: 0.5;
+  width: 200px;
+  float: left;
+}
+
+#pets .pet.active {
+  opacity: 1.0;
+}

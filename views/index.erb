@@ -59,7 +59,7 @@
 <div id="pets">
   <h1>Pets</h1>
   <% @pets.each do |pet| %>
-    <div id="<%= pet[0] %>" class="pet"><a href="http://www.wowhead.com/spell=<%= pet[0] %>"><%= pet[1] %></a></div>
+    <div id="<%= pet[0] %>" class="pet"><a href="http://www.wowhead.com/spell=<%= pet[0] %>"><%= pet[1].gsub("\\'", "'") %></a></div>
   <% end %>
 </div>
 

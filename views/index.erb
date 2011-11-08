@@ -22,13 +22,6 @@
     }
 
     $(function() {
-      $("#add").click(function() {
-        var realm = prompt("Realm?");
-        var name  = prompt("Character?");
-
-        getPets(realm, name);
-      });
-
       $("#add_char").submit(function(evt) {
         var realm = "<%= @realm %>";
         var name = $(this).find('input').val();

@@ -6,8 +6,7 @@ pets = JSON.parse File.read("./pets.json")
 pets.sort! { |a,b| a[1] <=> b[1] }
 
 get '/' do
-  @pets = pets
-  erb :index
+  redirect '/nazjatar'
 end
 
 get '/:realm' do |realm|
